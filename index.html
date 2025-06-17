@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spaceman Prediction Bot</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    .box { border: 1px solid #ccc; padding: 20px; display: inline-block; }
+    .result { font-size: 24px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Spaceman Prediction Bot</h1>
+  <div class="box">
+    <button onclick="getPrediction()">🎯 Get Prediction</button>
+    <div class="result" id="prediction">Prediction: --</div>
+    <div class="result" id="actual">Actual Crash: --</div>
+  </div>
+
+  <script>
+    async function getPrediction() {
+      const res = await fetch("/predict");
+      const data = await res.json();
+      document.getElementById("prediction").textContent = `Prediction: ${data.prediction}x`;
+      document.getElementById("actual").textContent = `Actual Crash: ${data.actual}x`;
+    }
+  </script>
+</body>
+</html>
